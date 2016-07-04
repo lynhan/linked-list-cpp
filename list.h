@@ -1,5 +1,5 @@
 //
-//  list.hpp
+//  list.h
 //  list
 //
 //  Created by lynhan on 7/4/16.
@@ -12,8 +12,8 @@
 #include <stdio.h>
 #include <iostream>
 
-template<typename T>
 
+template<typename T>
 class list {
     struct node {
         node* prev;
@@ -118,8 +118,6 @@ public:
         }
         return last;
     }
-    
-  
     
     /*
      return iterator that points to the first of the newly inserted elements.
