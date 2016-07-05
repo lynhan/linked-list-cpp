@@ -16,17 +16,17 @@ class bowl {
     int toppings = 0;
     
 public:
-    bowl(string&& _noodle,
-         int&& _toppings) :
+    bowl(string _noodle,
+         int _toppings) :
     noodle(_noodle),
     toppings(_toppings) {}
     
     bowl(bowl&& other) :
-    noodle(std::move(other.noodle)),
-    toppings(std::move(other.toppings)) {}
+    noodle(other.noodle),
+    toppings(other.toppings) {}
 };
 
-template<typename ...AllParams>
+template<typename... AllParams>
 void print(AllParams... allParams);
 
 template<>
@@ -61,7 +61,6 @@ int main(int argc, const char * argv[]) {
     nums.printMe();
     
     list<bowl> bowls;
-    
     bowls.emplace_back(string("wheat"), 10);
     return 0;
 }
