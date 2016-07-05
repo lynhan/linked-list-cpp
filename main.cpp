@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <string>
 #include "list.h"
 using namespace std;
 
@@ -21,8 +22,8 @@ public:
     toppings(_toppings) {}
     
     bowl(bowl&& other) :
-    noodle(other.noodle),
-    toppings(other.toppings) {}
+    noodle(std::move(other.noodle)),
+    toppings(std::move(other.toppings)) {}
 };
 
 template<typename ...AllParams>
@@ -60,8 +61,7 @@ int main(int argc, const char * argv[]) {
     nums.printMe();
     
     list<bowl> bowls;
-    string w("wheat");
-    int t(10);
-    bowls.emplace_back(std::move(w), std::move(t));
+    
+    bowls.emplace_back(string("wheat"), 10);
     return 0;
 }
