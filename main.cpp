@@ -15,12 +15,12 @@ class bowl {
     int toppings = 0;
     
 public:
-    bowl(string& _noodle,
-         int& _toppings) :
+    bowl(string&& _noodle,
+         int&& _toppings) :
     noodle(_noodle),
     toppings(_toppings) {}
     
-    bowl(bowl && other) :
+    bowl(bowl&& other) :
     noodle(other.noodle),
     toppings(other.toppings) {}
 };
@@ -60,7 +60,8 @@ int main(int argc, const char * argv[]) {
     nums.printMe();
     
     list<bowl> bowls;
-    
-    bowls.emplace_back(string("wheat"), 1);
+    string w("wheat");
+    int t(10);
+    bowls.emplace_back(std::move(w), std::move(t));
     return 0;
 }
