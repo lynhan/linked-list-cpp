@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include <iostream>
-
+#include <utility>
 
 template<typename T>
 class list {
@@ -155,6 +155,12 @@ public:
         } else {
             head = tail = nullptr;
         }
+    }
+    
+    template<class... types>
+    void emplace_back(types&&... params) {
+        tail->next = new node{tail, nullptr, T(std::forward<types>(params)...)};
+        tail = tail->next;
     }
     
     void printMe() {

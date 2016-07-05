@@ -10,26 +10,57 @@
 #include "list.h"
 using namespace std;
 
+class bowl {
+    string noodle = "soba";
+    int toppings = 0;
+    
+public:
+    bowl(string& _noodle,
+         int& _toppings) :
+    noodle(_noodle),
+    toppings(_toppings) {}
+    
+    bowl(bowl && other) :
+    noodle(other.noodle),
+    toppings(other.toppings) {}
+};
+
+template<typename ...AllParams>
+void print(AllParams... allParams);
+
+template<>
+void print() {
+    std::cout << endl;
+}
+
+template<typename First, typename ...Rest>
+void print(First first, Rest... rest) {
+    std::cout << first;
+    print(rest...);
+}
+
 int main(int argc, const char * argv[]) {
     int a(1);
     int b(2);
-    list<int> L;
+    list<int> nums;
     
-    L.push_back(a);
-    L.push_back(b);
-    L.insert(L.end(), 3);
-    L.insert(L.end(), 4);
-    L.printMe();
+    nums.push_back(a);
+    nums.push_back(b);
+    nums.insert(nums.end(), 3);
+    nums.insert(nums.end(), 4);
+    nums.printMe();
     
-    L.erase(L.begin());
-    L.printMe();
+    nums.erase(nums.begin());
+    nums.printMe();
     
-    L.pop_back();
-    L.printMe();
+    nums.pop_back();
+    nums.printMe();
     
-    L.erase(L.begin(), L.end());
-    L.printMe();
-
-    cout << "done" << endl;
+    nums.erase(nums.begin(), nums.end());
+    nums.printMe();
+    
+    list<bowl> bowls;
+    
+    bowls.emplace_back(string("wheat"), 1);
     return 0;
 }
